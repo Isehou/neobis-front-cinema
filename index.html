@@ -4,6 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>neobis-front-cinema</title>
+    <link rel="stylesheet" href="styles.css" />
   </head>
-  <body></body>
+  <body>
+    <header class="header">
+      <div class="logo-container">
+        <!-- MOVIE APP -->
+        <img src="./image/movie-app logo/logo-no-background.png" alt="logo" />
+      </div>
+      <section class="header-nav__wrapper">
+        <ul class="header-nav__list">
+          <li class="nav-item nav-item__active premiers">Премьеры месяца</li>
+          <li class="nav-item expected">Топ ожидаемых</li>
+          <li class="nav-item popular">Топ лучших</li>
+          <li class="nav-item releases">Релизы этого месяца</li>
+        </ul>
+        <div class="header-nav__favorites nav-item">
+          <img src="/image/favorite.png" alt="favorite-icon" />
+        </div>
+
+        <form class="search-form">
+          <input type="search" class="search-input" placeholder="Поиск..." />
+          <img
+            class="search-btn"
+            type="submit"
+            src="./image/search-icon.svg"
+            alt="search-icon"
+          />
+        </form>
+      </section>
+    </header>
+    <section class="main-wrapper">
+      <div class="list"></div>
+    </section>
+    <script src="script.js"></script>
+  </body>
 </html>

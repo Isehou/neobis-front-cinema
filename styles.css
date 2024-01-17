@@ -119,21 +119,35 @@ body {
 
 /* main */
 
-.main-wrapper {
+.movie {
   padding: 30px 150px;
 }
-.list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.movie__card {
+  color: var(--white-color);
+  /* display: flex;
+  flex-wrap: wrap; */
   gap: 20px;
 }
-.item {
-  flex: 1;
+.movie__card-block {
+  width: 300px;
+  background-color: red;
 }
-.item-img {
-  min-width: 400px;
-  width: 100%;
-  height: 300px;
-  object-fit: cover;
+.block-left {
+  /* background-color: #e2dcc8; */
+}
+.block-right {
+  /* background-color: whitesmoke; */
+}
+.title {
+}
+.movie__card-img {
+  width: 300px;
+}
+.icon {
+}
+.rating {
+}
+.years {
+}
+.genre {
 }

@@ -17,4 +17,16 @@ Use existing HTML/CSS & JS skills and create a mini-project KinoAfisha using net
 
 <h2>Demo</h2>
 
-https://isehou.github.io/______/
+<h4>Check out the live demo </h4>https://isehou.github.io/neobis-front-cinema/
+
+<h2>Getting Started</h2>
+
+<h4>To run the project locally, follow these steps:</h4>
+
+<h5>1. Clone the repository:<h5>
+
+    git clone https://github.com/isehou/neobis-front-cinema.git
+
+<h2>Contact</h2>
+
+If you have any questions or suggestions, feel free to reach out to Isan at [zaku47shift@gmail.com].

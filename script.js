@@ -2,10 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchForm = document.querySelector(".search-form");
   const searchInput = document.querySelector(".search-input");
   const searchBtn = document.querySelector(".search-btn");
+  const logo = document.querySelector(".logo-container");
   const premiers = document.querySelector(".premiers");
   const releases = document.querySelector(".releases");
   const popular = document.querySelector(".popular");
   const closeReleases = document.querySelector(".close-releases");
+  const favorites = document.querySelector(".header-nav__favorites");
   const movie = document.querySelector(".movie");
 
   const currentDate = new Date();
@@ -106,29 +108,42 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function init() {
-    searchInput.addEventListener("input", (e) => {
-      if (e.key === "Enter") {
-        console.log("Выполняется поиска" + searchInput.value);
-      }
-    });
-    searchForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-    });
+  function isFavorite(elem) {
+    let data = JSON.parse(localStorage.getItem("films")) || [];
+    return data.findIndex((item) => item.filmId === elem.filmId) !== -1;
   }
 
+  function init() {
+    searchInput.addEventListener("input", getDataMovie(API_URL_KEYWORD));
+    searchForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (searchInput.value) {
+        getDataMovie(API_URL_KEYWORD);
+      }
+    });
+    if (logo) {
+      logo.addEventListener("click", () => {
+        window.location.href = "index.html";
+      });
+    }
+    premiers.addEventListener("click", () => {
+      getDataMovie(API_URL_PREMIERES);
+    });
+    releases.addEventListener("click", () => {
+      getDataMovie(API_URL_RELEASES);
+    });
+    popular.addEventListener("click", () => {
+      getDataMovie(API_URL_TOP);
+    });
+    closeReleases.addEventListener("click", () => {
+      getDataMovie(API_URL_CLOSE_RELEASES);
+    });
+    favorites.addEventListener("click", () => {
+      let data = JSON.parse(localStorage.getItem("films"));
+      displayMovieList(data);
+    });
+  }
   init();
 
-  premiers.addEventListener("click", () => {
-    getDataMovie(API_URL_PREMIERES);
-  });
-  releases.addEventListener("click", () => {
-    getDataMovie(API_URL_RELEASES);
-  });
-  popular.addEventListener("click", () => {
-    getDataMovie(API_URL_TOP);
-  });
-  closeReleases.addEventListener("click", () => {
-    getDataMovie(API_URL_CLOSE_RELEASES);
-  });
+  console.log("DOM готов к использованию!");
 });

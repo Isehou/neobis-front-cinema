@@ -120,34 +120,72 @@ body {
 /* main */
 
 .movie {
+  margin: 50px 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
   padding: 30px 150px;
 }
+.list {
+}
 .movie__card {
+  box-sizing: border-box;
+  position: relative;
+  margin: 50px 10px;
   color: var(--white-color);
-  /* display: flex;
-  flex-wrap: wrap; */
-  gap: 20px;
 }
 .movie__card-block {
+  width: 100%;
   width: 300px;
-  background-color: red;
 }
 .block-left {
-  /* background-color: #e2dcc8; */
+  height: 150px;
 }
 .block-right {
-  /* background-color: whitesmoke; */
+  position: absolute;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  z-index: 2;
 }
 .title {
+  font-size: 16pt;
+  height: 50px;
 }
 .movie__card-img {
   width: 300px;
+  max-height: 420px;
 }
 .icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
 }
 .rating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 50px;
+  height: 50px;
+  background-color: var(--white-color);
+  color: var(--black-color);
+  font-size: 20pt;
+  font-weight: 400;
+  border-radius: 7px;
 }
 .years {
+  font-size: 14pt;
+  font-weight: 400;
 }
 .genre {
+  font-size: 14pt;
+  font-weight: 400;
 }

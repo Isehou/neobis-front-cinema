@@ -86,10 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
       let icon = document.createElement("img");
       icon.classList = "icon";
 
-      let rating = document.createElement("div");
-      rating.className = "rating";
-      // rating.textContent = item.rating;
-      rating.innerHTML = "10";
+      let movieRating = document.createElement("div");
+      movieRating.className = "rating";
+      movieRating.textContent = item.rating;
 
       let year = document.createElement("div");
       year.textContent = item.year;
@@ -101,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       card.appendChild(image);
       block_left.append(title, year, genre);
-      block_right.append(rating, icon);
+      block_right.append(movieRating, icon);
       block.append(block_left, block_right);
       card.appendChild(block);
       movie.appendChild(card);

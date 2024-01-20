@@ -45,6 +45,7 @@ body {
 .header-nav__wrapper {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .header-nav__list {
@@ -131,6 +132,7 @@ body {
   flex-wrap: wrap;
   padding: 30px 150px;
 }
+
 .list {
 }
 .movie__card {
@@ -138,6 +140,10 @@ body {
   position: relative;
   margin: 50px 10px;
   color: var(--white-color);
+}
+.movie__card:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
 }
 .movie__card-block {
   width: 100%;

@@ -190,5 +190,5 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   init();
 
-  console.log("DOM готов к использованию!");
+  console.log("DOM готов к использованию");
 });

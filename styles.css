@@ -73,6 +73,10 @@ body {
   box-shadow: var(--box-shadow);
   /* transform: scale(1.05); */
 }
+.nav-item:hover .active {
+  background-color: #666;
+  color: white;
+}
 
 .header-nav__favorites {
   margin: 0 40px 0 20px;
@@ -120,11 +124,10 @@ body {
 /* main */
 
 .movie {
+  box-sizing: border-box;
   margin: 50px 0;
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  /* flex-direction: column; */
   flex-wrap: wrap;
   padding: 30px 150px;
 }
@@ -163,8 +166,8 @@ body {
   max-height: 420px;
 }
 .icon {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 }
 .rating {
@@ -173,13 +176,14 @@ body {
   align-items: center;
   margin: 0;
   padding: 0;
-  width: 50px;
-  height: 50px;
-  background-color: var(--white-color);
-  color: var(--black-color);
-  font-size: 20pt;
-  font-weight: 400;
-  border-radius: 7px;
+  width: 60px;
+  height: 60px;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  font-size: 16pt;
+  font-weight: 500;
+  /* border-radius: 7px; */
+  box-shadow: var(--box-shadow);
 }
 .years {
   font-size: 14pt;

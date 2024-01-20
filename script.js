@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const searchInput = document.querySelector(".search-input");
   const searchBtn = document.querySelector(".search-btn");
   const logo = document.querySelector(".logo-container");
+  const navigationList = document.querySelector(".header-nav__list");
+  const navigationItem = document.querySelector(".nav-item");
+
   const premiers = document.querySelector(".premiers");
   const releases = document.querySelector(".releases");
   const popular = document.querySelector(".popular");
@@ -21,9 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_URL_TOP = `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=TOP_POPULAR_MOVIES&page=1`;
   const API_URL_CLOSE_RELEASES = `https://kinopoiskapiunofficial.tech/api/v2.2/films/collections?type=CLOSES_RELEASES&page=1`;
 
-  // Search by keyword
-  const KEYWORD = searchInput.value.trim("");
+  const KEYWORD = searchInput.value.trim();
   const API_URL_KEYWORD = `https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=${KEYWORD}&page=1`;
+
+  getLocal();
 
   async function getDataMovie(url) {
     try {
@@ -85,10 +89,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
       let icon = document.createElement("img");
       icon.classList = "icon";
+      icon.src = isFavorite(item)
+        ? "./image/heart_fill.svg"
+        : "./image/heart_outline.svg";
+
+      icon.addEventListener("click", () => {
+        toggleFavorite(item);
+        icon.src = isFavorite(item)
+          ? "./image/heart_outline.svg"
+          : "./image/heart_fill.svg";
+      });
 
       let movieRating = document.createElement("div");
       movieRating.className = "rating";
-      movieRating.textContent = item.rating;
+
+      if (movieRating === 0 || isNaN(movieRating.textContent)) {
+        movieRating.textContent = "10";
+      } else {
+        movieRating.textContent = Math.round(item.rating * 10) / 10;
+      }
 
       let year = document.createElement("div");
       year.textContent = item.year;
@@ -107,13 +126,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  function isFavorite(elem) {
+  function isFavorite(item) {
     let data = JSON.parse(localStorage.getItem("films")) || [];
-    return data.findIndex((item) => item.filmId === elem.filmId) !== -1;
+    return data.findIndex((elem) => elem.filmId === item.filmId) !== -1;
+  }
+  function toggleFavorite(item) {
+    let data = JSON.parse(localStorage.getItem("films")) || [];
+    const filmIndex = data.findIndex((elem) => {
+      if (elem.filmId) {
+        return elem.filmId === item.filmId;
+      } else {
+        return elem.kinopoiskId === item.kinopoiskId;
+      }
+    });
+    if (filmIndex !== -1) {
+      data.splice(filmIndex, 1);
+    } else {
+      data.push(item);
+    }
+    localStorage.setItem("films", JSON.stringify(data));
   }
 
   function init() {
-    searchInput.addEventListener("input", getDataMovie(API_URL_KEYWORD));
+    navigationList.addEventListener("click", function () {
+      document.querySelectorAll(".nav-item").forEach((item) => {
+        item.classList.remove("active");
+      });
+      this.classList.add("active");
+    });
+
+    searchInput.addEventListener("input", () => getDataMovie(API_URL_KEYWORD));
     searchForm.addEventListener("submit", (e) => {
       e.preventDefault();
       if (searchInput.value) {
@@ -122,9 +164,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     if (logo) {
       logo.addEventListener("click", () => {
-        window.location.href = "index.html";
+        getDataMovie(API_URL_PREMIERES);
       });
     }
+    window.addEventListener("load", () => {
+      getDataMovie(API_URL_PREMIERES);
+    });
+
     premiers.addEventListener("click", () => {
       getDataMovie(API_URL_PREMIERES);
     });
